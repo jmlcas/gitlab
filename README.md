@@ -1,7 +1,7 @@
 # GitLab
 
-Ir a "localhost:8200"
+Ir a URL válida
 
-Usuario: admin@example.com
+Usuario: admin@example.com (por defecto)
 
-Password: P4ssw0rd
+Password: P4ssw0rd (por defecto)
