@@ -4,12 +4,12 @@ services:
     image: gitlab/gitlab-ce:latest
     container_name: gitlab
     restart: unless-stopped
-#    hostname: 'gitlab.example.com'
+    hostname: 'gitlab.example.com'    # Cambiar por dominio válido
     environment:
-      GITLAB_ROOT_EMAIL: "admin@example.com"
-      GITLAB_ROOT_PASSWORD: "p4ssw0rd"         
+      GITLAB_ROOT_EMAIL: "admin@example.com"    # Cambiar por e-mail válido
+      GITLAB_ROOT_PASSWORD: "p4ssw0rd"          # Cambiar 
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://ip:8200'    # 'https://gitlab.example.com:8200'    
+        external_url 'https://gitlab.example.com:8200'      # Cambiar por URL válida
         gitlab_rails['gitlab_shell_ssh_port'] = 2424
     ports:
       - '8200:80'
