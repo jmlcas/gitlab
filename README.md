@@ -1,3 +1,3 @@
 # GitLab
 
-Ir a "http://IP:8200"
+Ir a "http://localhost:8200"
