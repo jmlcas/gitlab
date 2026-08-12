@@ -1,29 +1,22 @@
 services:
 
   gitlab:
-    image: gitlab/gitlab-ce:latest  # 19.2.0-ce.0
+    image: gitlab/gitlab-ce:latest    # 19.2.0-ce.0
     container_name: gitlab
     restart: unless-stopped
-    environment:
-      GITLAB_ROOT_EMAIL: "admin@example.com"    # Cambiar por e-mail válido
-      GITLAB_ROOT_PASSWORD: "p4ssw0rd"          # Cambiar 
-      GITLAB_OMNIBUS_CONFIG: |
-        gitlab_rails['gitlab_shell_ssh_port'] = 2424
-    ports:
-      - '8200:80'
-      - '2424:22'
+    stop_grace_period: 5m
+    shm_size: "256m"
     volumes:
-      - './gitlab/config:/etc/gitlab'
-      - './gitlab/logs:/var/log/gitlab'
-      - './gitlab/data:/var/opt/gitlab'
-    shm_size: '256m'
-
-
-
-  #  environment:
-  #    GITLAB_OMNIBUS_CONFIG: |
-  #      external_url "http://git.example.com:8080"
-  #      nginx['listen_port'] = 80
-  #      nginx['listen_https'] = false
-  #      letsencrypt['enable'] = false
-  #      gitlab_rails['gitlab_shell_ssh_port'] = 2222
+      - ./config:/etc/gitlab
+      - ./data:/var/opt/gitlab
+      - ./logs:/var/log/gitlab
+    ports:
+      - "8200:80"
+      - "2222:22"
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url "http://localhost:8200"   # cambiar IP:8200 ó dominio
+        nginx['listen_port'] = 80
+        nginx['listen_https'] = false
+        letsencrypt['enable'] = false
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
